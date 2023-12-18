@@ -90,12 +90,18 @@ python main.py
 when the Tool Lunch there two options so far Version 1.1 
 
 * Options :
-      1: Insert the Data into Firebase Users 
-      **Note** : here you have to Provide the Path of you data .CSV format stored in **Folder DATA**
-      2: Send Email with Reset Password Method to set reset
+
+    1. Insert the Data into Firebase Users 
+
+        **Note** : here you have to Provide the Path of you data .CSV format stored in **Folder DATA**
+
+    2. Send Email with Reset Password Method to set reset
+
       **Note** : here you have to give the method send ***for now only we have ***reset*** as Method to set in option 2 
-      99: Exiting from tool Press CTRL + C
-      **Note** : to exit from the Tool use CTRL + C
+      
+    3. Exiting from tool Press CTRL + C
+    
+       **Note** : to exit from the Tool use CTRL + C
 
 #### Cost-Sending
 
