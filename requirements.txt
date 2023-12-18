@@ -1,0 +1,5 @@
+firebase-rest-api
+pandas 
+requests
+regx
+tqdm
