@@ -10,7 +10,7 @@ import time
 
 def Clear():
     os.system("clear")
-    #Screen_log()
+    Screen_log()
     time.sleep(1)
 
 def Inputs_Create():

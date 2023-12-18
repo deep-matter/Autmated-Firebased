@@ -1,49 +1,130 @@
 # Firebase Automation
 
-Automate various Firebase authentication tasks with these functions. The documentation outlines the usage and functionality of each function.
+Automated Tool for Firebase Sending Emails. This documentation outlines the usage and functionality of each function.
 
 ## Table of Contents
 
-- [Prerequisites](#prerequisites)
-- [Function 1: Create Users in Firebase](#function-1-create-users-in-firebase)
-- [Function 2: Send Password Reset Email](#function-2-send-password-reset-email)
-- [Function 3: Send Verification Email to Users](#function-3-send-verification-email-to-users)
-- [Function 4: Change Email Address](#function-4-change-email-address)
-- [Managing Database Users](#managing-database-users)
-  - [Retrieve Database Users Based on Filters](#retrieve-database-users-based-on-filters)
-  - [Delete User Accounts Based on Filters](#delete-user-accounts-based-on-filters)
-  - [Remove Database Users Based on Filters](#remove-database-users-based-on-filters)
+- [Installation](#installation)
+- [Setup Data](#setup-data)
+- [Usage](#usage)
+- [Cost Sending](#cost-sending)
 
-## Prerequisites
+## Installation
 
-Before using the Firebase automation functions, make sure to specify email filters.
+To install the tool and create a virtual environment to run the main script, follow these steps:
 
-## Function 1: Create Users in Firebase
+### Steps to run the Firebase Sender tool:
 
-This function reads user data from a CSV file and creates users in Firebase.
+1. Initialize the environment:
 
-## Function 2: Send Password Reset Email
+    ```bash
+    python -m venv Firebase
+    ```
 
-This function sends password reset emails to users in Firebase based on the provided CSV data.
+2. Activate the environment:
 
-## Function 3: Send Verification Email to Users
+    ```bash
+    source Firebase/Scripts/activate.bat
+    ```
 
-This function sends email verification requests to users in Firebase based on the provided CSV data.
+3. Install the required libraries:
 
-## Function 4: Change Email Address
+    ```bash
+    pip install -r requirements.txt
+    ```
 
-This function changes the email addresses of users in Firebase based on the provided CSV data.
+## Setup Data
 
-## Managing Database Users
+To insert data into the tool, store the CSV Excel file containing email/password data in the [Data](/Data) folder.
 
-### Retrieve Database Users Based on Filters
+### Notation Setting in Firebase Platform
 
-This function retrieves and prints database users in Firebase Authentication based on specified email filters.
+To store data in the Firebase Realtime Database, follow these steps:
 
-### Delete User Accounts Based on Filters
+1. Create an instance of the Realtime Database.
 
-This function deletes user accounts in Firebase Authentication based on specified email filters.
+2. Overwrite the permissions of data to read and write by setting the following to **true** in your Firebase project's rules:
 
-### Remove Database Users Based on Filters
+    ```yaml
+    {
+      "rules": {
+        ".read": true,
+        ".write": true
+      }
+    }
+    ```
 
-This function removes database users in Firebase Authentication based on specified email filters.
+3. In the `Credential.py` file, add your own database link. Append `/user` to the end of the link:
+
+```bash
+"databaseURL": "https://add-user-e98e9-default-rtdb.firebaseio.com/users",
+```
+
+Note: To get the Credential Config of the Project, follow the steps in the project settings and copy the JSON to `Creditials.py`.
+
+```python
+
+Creditials = {
+    "apiKey": "AIzaSyDtQPBX8qQZ22xyNCaAANg02XDM_bfN0uk",
+    "authDomain": "add-user-e98e9.firebaseapp.com",
+    "projectId": "add-user-e98e9",
+    "databaseURL": "https://add-user-e98e9-default-rtdb.firebaseio.com/users",
+    "storageBucket": "add-user-e98e9.appspot.com",
+    "messagingSenderId": "858288259676",
+    "appId": "1:858288259676:web:52354ec6f2a90f13581c99",
+    "measurementId": "G-D0WPTFDN0K"
+}
+```
+
+
+#### Usage-run
+
+to run the tool follow the Command :
+
+```bash 
+python main.py
+```
+
+##### How to use 
+
+when the Tool Lunch there two options so far Version 1.1 
+
+* Options :
+      1: Insert the Data into Firebase Users 
+      **Note** : here you have to Provide the Path of you data .CSV format stored in **Folder DATA**
+      2: Send Email with Reset Password Method to set reset
+      **Note** : here you have to give the method send ***for now only we have ***reset*** as Method to set in option 2 
+      99: Exiting from tool Press CTRL + C
+      **Note** : to exit from the Tool use CTRL + C
+
+#### Cost-Sending
+
+##### Accounts per project
+
+| Account type              | Limit           |
+|---------------------------|-----------------|
+| Anonymous user accounts   | 100 million     |
+| Registered user accounts  | Unlimited       |
+
+##### Reset Password Method
+
+Here, the table shows how much to send per account for three projects:
+
+| Project                  | Reset Password Limit  |
+|--------------------------|-----------------------|
+| Project 1                | 150        |
+| Project 2                | 150        |
+| Project 3                | 150        |
+
+**Send Total = 450 Emails**
+
+###### Email Sending Limits
+
+The quotas listed in this section scale with the size of their respective projects.
+
+| Operation                   | Spark Plan Limit   | 
+|-----------------------------|--------------------|
+| Address verification emails | 1000 emails/day    | 
+| Address change emails       | 1000 emails/day    | 
+| Password reset emails       | 150 emails/day     | 
+| Email link sign-in emails   | 5 emails/day      | 

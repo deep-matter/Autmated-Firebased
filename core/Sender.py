@@ -1,6 +1,7 @@
 from typing import Optional
 import pandas as pd
 from tqdm import tqdm
+import time
 
 class Sender:
     def __init__(self, data_csv_path: str, authentication, method: Optional[str] = None):
@@ -33,6 +34,7 @@ class Sender:
             try:
                 # Send password reset email
                 self.authentication.send_password_reset_email(email)
+                time.sleep(0.5)
                 print(f"Password reset email sent successfully to {email}")
             except Exception as e:
                 print(f"Error sending password reset email to {email}: {e}")
