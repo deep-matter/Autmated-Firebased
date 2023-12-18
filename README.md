@@ -97,7 +97,7 @@ when the Tool Lunch there two options so far Version 1.1
 
     2. Send Email with Reset Password Method to set reset
 
-        **Note** : here you have to give the method send ***for now only we have **reset** as Method to set in option 2 ***
+        **Note** : here you have to give the method send for now only we have **reset** as Method to set in option 2
       
     3. Exiting from tool Press CTRL + C
     
