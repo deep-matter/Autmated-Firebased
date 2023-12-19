@@ -2,9 +2,10 @@ import firebase
 from utlis import generate_random_password, generate_gmail_email, read_file
 from Config import FirebaseConfig
 from Creditials import Creditials
-from core.Sender import Sender
+from core.Sender import Sender , Settings
 from core.Manager import *
 import os 
+from utlis import separate_data
 from Screen import Screen_log
 import time
 
@@ -15,6 +16,10 @@ def Clear():
 
 def Inputs_Create():
     DATA = input("Add the path DATA emails:")
+    return DATA
+
+def Inputs_Split():
+    DATA = input("Add the path DATA emails to split:")
     return DATA
 
 def Inputs_Send():
@@ -30,6 +35,7 @@ def main():
         Clear()
         print("1: Insert the Data into Firebase Users")
         print("2: Send Email with Reset Password Method to set reset")
+        print("3: Split that Email into sub-Files")
         print("99: Exiting from tool Press CTRL + C")
         Choices = input("\n Please insert the choice: ")
 
@@ -40,13 +46,26 @@ def main():
             print("Wait Please, the tool will automatically reload.")
             time.sleep(8)
             return main()
+
         elif Choices == "2":
             Clear()
             DATA, METHOD = Inputs_Send()
-            Sender(data_csv_path=DATA, authentication=auth, method=METHOD).send_password_reset_email()
+             #Create an instance of the Settings class
+            settings_Sender = Settings(data_csv_path=DATA, authentication=auth)
+            Process_Sending = settings_Sender.sending(method=METHOD)
+            Process_Sending
+            print("Wait Please, the tool will automatically reload.")
+            time.sleep(8)
+
+        elif Choices == "3":
+            Clear()
+            DATA = Inputs_Split()
+            separate_data(DATA)
+            print("done splitation.")
             print("Wait Please, the tool will automatically reload.")
             time.sleep(8)
             return main()
+
         elif Choices == "99":
             Clear()
             print(f" For more information of each API follwoing :\n")

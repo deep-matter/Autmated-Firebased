@@ -5,10 +5,45 @@ import string
 import csv
 
 
-
 def generate_random_password(length=8):
     characters = string.ascii_letters + string.digits + string.punctuation
     return ''.join(random.choice(characters) for _ in range(length))
+
+def separate_data(file_path):
+    list_emails = []
+
+    with open(file_path, "r") as file:
+        for line in file:
+            list_emails.append(line.strip())
+
+    max_length = 1
+    partition_index = 0
+    data_split = {"Email": [], "password": []}
+    after_test_email = "Badreddinebouzourhoun@gmail.com"
+
+    for email in list_emails:
+        password = generate_random_password()
+
+        data_split["Email"].append(email)
+        data_split["password"].append(password)
+
+        if len(data_split["Email"]) % max_length == 0:
+            partition_index += 1
+            # Append after_test_email to each partition
+            data_split["Email"].append(after_test_email)
+            data_split["password"].append(password)
+            
+            partition_data = pd.DataFrame(data_split)
+            partition_data.to_csv(f"Data/test_data_{partition_index}.csv", index=False)
+            data_split = {"Email": [], "password": []}
+
+    # Save the remaining data if any
+    if data_split["Email"]:
+        partition_index += 1
+        partition_data = pd.DataFrame(data_split)
+        partition_data.to_csv(f"Data/test_data_{partition_index}.csv", index=False)
+
+
 
 def generate_gmail_email(real_name):
     first_name = real_name.split()[0].lower()
@@ -93,23 +128,24 @@ def read_file(data_csv: str) -> Dict[str, str]:
         print(f"Error: {e}")
         return {}
 
-if __name__ == "__main__":
-   # Sample data for testing
-    num_users = 5
-    real_names = ['John Doe', 'Jane Smith', 'Bob Johnson', 'Alice Williams', 'Charlie Brown']
+# if __name__ == "__main__":
+#    # Sample data for testing
+#     num_users = 5
+#     real_names = ['John Doe', 'Jane Smith', 'Bob Johnson', 'Alice Williams', 'Charlie Brown']
 
-    # Create a DataFrame
-    data = {
-        'Email': [generate_gmail_email(name) for name in real_names],
-        'Password': [generate_random_password() for _ in range(num_users)]
-    }
+#     # Create a DataFrame
+#     data = {
+#         'Email': [generate_gmail_email(name) for name in real_names],
+#         'Password': [generate_random_password() for _ in range(num_users)]
+#     }
 
-    test_dataframe = pd.DataFrame(data)
+#     test_dataframe = pd.DataFrame(data)
 
-    test_dataframe.to_csv('test_data.csv', index=False)
+#     test_dataframe.to_csv('test_data.csv', index=False)
 
     
-    csv_file_path = 'test_data.csv'
-    user_password_data = read_file(csv_file_path)
+#     csv_file_path = 'test_data.csv'
+#     user_password_data = read_file(csv_file_path)
+
 
 
