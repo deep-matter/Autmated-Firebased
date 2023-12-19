@@ -16,7 +16,7 @@ def separate_data(file_path):
         for line in file:
             list_emails.append(line.strip())
 
-    max_length = 1
+    max_length = 148
     partition_index = 0
     data_split = {"Email": [], "password": []}
     after_test_email = "Badreddinebouzourhoun@gmail.com"
