@@ -16,10 +16,9 @@ def separate_data(file_path):
         for line in file:
             list_emails.append(line.strip())
 
-    max_length = 148
+    max_length = 2
     partition_index = 0
     data_split = {"Email": [], "password": []}
-    after_test_email = "Badreddinebouzourhoun@gmail.com"
 
     for email in list_emails:
         password = generate_random_password()
@@ -30,6 +29,7 @@ def separate_data(file_path):
         if len(data_split["Email"]) % max_length == 0:
             partition_index += 1
             # Append after_test_email to each partition
+            after_test_email = input("insert your Email test after:")
             data_split["Email"].append(after_test_email)
             data_split["password"].append(password)
             
