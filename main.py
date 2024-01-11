@@ -9,6 +9,10 @@ from utlis import separate_data
 from Screen import Screen_log
 import time
 
+firebase_config = FirebaseConfig(Creditials)
+app = firebase_config.initialize_app()
+auth = firebase_config.get_auth_instance()
+
 def Clear():
     os.system("clear")
     Screen_log()
@@ -29,9 +33,6 @@ def Inputs_Send():
 
 def main():
     try:
-        firebase_config = FirebaseConfig(Creditials)
-        app = firebase_config.initialize_app()
-        auth = firebase_config.get_auth_instance()
         Clear()
         print("1: Insert the Data into Firebase Users")
         print("2: Send Email with Reset Password Method to set reset")
@@ -52,8 +53,7 @@ def main():
             DATA, METHOD = Inputs_Send()
              #Create an instance of the Settings class
             settings_Sender = Settings(data_csv_path=DATA, authentication=auth)
-            Process_Sending = settings_Sender.sending(method=METHOD)
-            Process_Sending
+            settings_Sender.sending(method=METHOD)
             print("Wait Please, the tool will automatically reload.")
             time.sleep(8)
 
