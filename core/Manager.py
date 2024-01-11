@@ -1,7 +1,8 @@
 import pandas as pd
 from tqdm import tqdm
+import time
 
-def create_users_in_firebase(data_csv,auth):
+def create_users_in_firebase(data_csv, auth):
     """
     Create users in Firebase from a CSV file.
 
@@ -12,13 +13,15 @@ def create_users_in_firebase(data_csv,auth):
     - None
     """
     # Read data from CSV file
+    queue_email = []
+    queue_pass = []
     user_data = pd.read_csv(data_csv)
 
     # Use tqdm for better progress visualization
     for _, row in tqdm(user_data.iterrows(), total=len(user_data), desc="Creating users"):
         email = row['Email']
         password = row['Password']
-
+        time.sleep(1)
         # Create a new user
         try:
             auth.create_user_with_email_and_password(email, password)
@@ -28,8 +31,24 @@ def create_users_in_firebase(data_csv,auth):
             error_message = str(e)
             if "EMAIL_EXISTS" in error_message:
                 tqdm.write(f"Email {email} already exists.")
+
+            if "QUOTA_EXCEEDED" in error_message:
+                queue_email.append(email)
+                queue_pass.append(password)
+                tqdm.write(f"Email queued for creating later: {email}")
+                time.sleep(2)
             else:
-                tqdm.write(f"Error creating user for email {email}: {error_message}")
+                tqdm.write(f"done creating user for emails")
+
+    time.sleep(2)
+    print(f"Freeze Queue {1} the Auth for a Period of time")
+    time.sleep(2)
+
+    if queue_email is not None:
+        for _email , secrte in zip(queue_email ,queue_pass):
+            auth.create_user_with_email_and_password(_email, secrte)
+            tqdm.write(f"User created successfully for email: {_email}")
+
 
 
 
