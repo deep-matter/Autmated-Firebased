@@ -1,8 +1,108 @@
 import pandas as pd
 from tqdm import tqdm
-import time
+import asyncio
+from utlis import re_initialized_auth
+import os
 
-def create_users_in_firebase(data_csv, auth):
+queue_email = []
+queue_pass = []
+
+def save_queue_data(self, queues, data, partition_name, queue_index):
+        save_queue_data_frame = pd.DataFrame({"Email": queues[queue_index]})
+        save_path = os.path.join(data, partition_name, f"queue_{queue_index}.csv")
+
+        if not os.path.exists(os.path.dirname(save_path)):
+            os.makedirs(os.path.dirname(save_path), exist_ok=True)
+
+        save_queue_data_frame.to_csv(save_path, index=False)
+        print("Save Email recovery created successfully")
+
+def split_data(data_csv, n_splits):
+    """
+    Split data into n_splits chunks and save each part to a separate CSV file.
+    """
+    partition_name = os.path.splitext(os.path.basename(data_csv))[0]
+    data_df = pd.read_csv(data_csv)
+    data = "./Data/"
+    # Calculate the size of each chunk
+    print(len(data_df))
+    chunk_size = len(data_df) // n_splits
+    save_path = data + partition_name
+    if not os.path.exists(save_path):
+            os.makedirs(save_path, exist_ok=True)
+# In    
+
+    # Iterate over the number of splits
+    for i in range(n_splits):
+        start_index = i * chunk_size
+        end_index = (i + 1) * chunk_size if i < n_splits - 1 else len(data_df)
+    
+        # Extract the data for the current chunk
+        data_part = data_df[start_index:end_index]
+
+        data_part.to_csv(os.path.join(save_path,f"part_{i + 1}.csv"), index=False)
+
+
+async def Push_Emails(data_part , auth , index_parition , config):
+    if index_parition > 1:
+        await asyncio.sleep(2)
+        re_auth = re_initialized_auth(config)
+        with tqdm(total=len(data_part), desc=f"Creating users partiton {index_parition}") as pbar:
+            for _, row in data_part.iterrows():
+                pbar.update(1)
+                email = row['Email']
+                password = row['Password']
+                await asyncio.sleep(2)
+                # Create a new user
+                try:
+                    re_auth.create_user_with_email_and_password(email, password)
+                    tqdm.write(f"User created successfully for email: {email}")
+                except Exception as e:
+                    # Handle the error if the email already exists
+                    error_message = str(e)
+                    if "EMAIL_EXISTS" in error_message:
+                        tqdm.write(f"Email {email} already exists.")
+
+                    if "TOO_MANY_ATTEMPTS_TRY_LATER" in error_message:
+                        queue_email.append(email)
+                        queue_pass.append(password)
+                        tqdm.write(f"Email queued for creating later: {email}")
+                        await asyncio.sleep(2)
+                    else:
+                        tqdm.write(f"done creating user for emails from partition {index_parition}")
+        
+
+            pbar.close()
+    else :
+        with tqdm(total=len(data_part), desc=f"Creating users partiton {index_parition}") as pbar:
+            for _, row in data_part.iterrows():
+                pbar.update(1)
+                email = row['Email']
+                password = row['Password']
+                await asyncio.sleep(2)
+                # Create a new user
+                try:
+                    auth.create_user_with_email_and_password(email, password)
+                    tqdm.write(f"User created successfully for email: {email}")
+                except Exception as e:
+                    # Handle the error if the email already exists
+                    error_message = str(e)
+                    if "EMAIL_EXISTS" in error_message:
+                        tqdm.write(f"Email {email} already exists.")
+
+                    if "TOO_MANY_ATTEMPTS_TRY_LATER" in error_message:
+                        queue_email.append(email)
+                        queue_pass.append(password)
+                        tqdm.write(f"Email queued for creating later: {email}")
+                        await asyncio.sleep(2)
+                    else:
+                        tqdm.write(f"done creating user for emails from partition {index_parition}")
+        
+            pbar.close()
+        
+        
+
+async def create_users_in_firebase(data_csv, auth, config):
     """
     Create users in Firebase from a CSV file.
 
@@ -13,41 +113,20 @@ def create_users_in_firebase(data_csv, auth):
     - None
     """
     # Read data from CSV file
-    queue_email = []
-    queue_pass = []
-    user_data = pd.read_csv(data_csv)
+    
+    #user_data = pd.read_csv(data_csv)
+    print(data_csv)
+    split_data(data_csv, 3)
+    exit()
 
-    # Use tqdm for better progress visualization
-    for _, row in tqdm(user_data.iterrows(), total=len(user_data), desc="Creating users"):
-        email = row['Email']
-        password = row['Password']
-        time.sleep(1)
-        # Create a new user
-        try:
-            auth.create_user_with_email_and_password(email, password)
-            tqdm.write(f"User created successfully for email: {email}")
-        except Exception as e:
-            # Handle the error if the email already exists
-            error_message = str(e)
-            if "EMAIL_EXISTS" in error_message:
-                tqdm.write(f"Email {email} already exists.")
-
-            if "QUOTA_EXCEEDED" in error_message:
-                queue_email.append(email)
-                queue_pass.append(password)
-                tqdm.write(f"Email queued for creating later: {email}")
-                time.sleep(2)
-            else:
-                tqdm.write(f"done creating user for emails")
-
-    time.sleep(2)
-    print(f"Freeze Queue {1} the Auth for a Period of time")
-    time.sleep(2)
-
-    if queue_email is not None:
-        for _email , secrte in zip(queue_email ,queue_pass):
-            auth.create_user_with_email_and_password(_email, secrte)
-            tqdm.write(f"User created successfully for email: {_email}")
+    partition_name = os.path.splitext(os.path.basename(data_csv))[0]
+    data = "./Data/"
+    path = data + partition_name
+    print(path)
+    for partition in range(1, 4):
+        data_part = pd.read_csv(f"{path}/part_{partition}.csv")
+        await Push_Emails(data_part, auth, partition, config)
+        await asyncio.sleep(3)
 
 
 

@@ -1,48 +1,20 @@
+from re import M
 import pandas as pd
 from typing import Dict
 import random
 import string
 import csv
+from parser import load_json_into_dictionary
+from Config import FirebaseConfig
+import shutil
 
-import json
-import os
+def re_initialized_auth(config):
+    config_data = load_json_into_dictionary(config)
+    firebase_config = FirebaseConfig(config_data)
+    app = firebase_config.initialize_app()
+    auth = firebase_config.get_auth_instance()
+    return auth 
 
-def parse(file_path):
-    current_config = {}
-    current_index = 1
-    output_folder = "apps"  # Folder name where JSON configurations will be saved
-
-    os.makedirs(output_folder, exist_ok=True)
-
-    with open(file_path, 'r') as file:
-        for line in file:
-            # Check if the line contains ':'
-            if ':' in line:
-                key, value = map(str.strip, line.split(':', 1))
-
-                value = value.split('"')[1]
-
-                if value.endswith('.'):
-                    value = value[:-1].strip()
-
-                current_config[key] = value
-            elif line.strip().lower() == "next":
-                if current_config:
-                    json_config = json.dumps(current_config, indent=2, ensure_ascii=False)
-                    output_file_path = os.path.join(output_folder, f"app_{current_index}.json")
-                    with open(output_file_path, 'w') as json_file:
-                        json_file.write(json_config)
-                    print(f"JSON configuration for app_{current_index} saved to {output_file_path}")
-
-                    current_config = {}
-                    current_index += 1
-
-    if current_config:
-        json_config = json.dumps(current_config, indent=2, ensure_ascii=False)
-        output_file_path = os.path.join(output_folder, f"app_{current_index}.json")
-        with open(output_file_path, 'w') as json_file:
-            json_file.write(json_config)
-        print(f"JSON configuration for app_{current_index} saved to {output_file_path}")
 
 
 def generate_random_password(length=8):
@@ -82,6 +54,8 @@ def separate_data(file_path):
         partition_index += 1
         partition_data = pd.DataFrame(data_split)
         partition_data.to_csv(f"Data/test_data_{partition_index}.csv", index=False)
+        shutil.rmtree(file_path)  # Remove the entire directory
+
 
 
 

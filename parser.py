@@ -38,4 +38,17 @@ def parse(file_path):
             json_file.write(json_config)
         print(f"JSON configuration for app_{current_index} saved to {output_file_path}")
 
-parse("configs.txt")
+
+def load_json_into_dictionary(file_path):
+    # Load JSON file
+    with open(file_path) as json_file:
+        data = json.load(json_file)
+    return data
+
+if __name__ == "__main__":
+    # file_path = "./apps/app_1.json"
+    # data = load_json_into_dictionary(file_path)
+    # print(data)
+    total_project = os.listdir("./apps")
+    print(len(total_project))
+    parse("configs.txt")

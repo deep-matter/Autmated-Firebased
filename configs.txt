@@ -1,34 +1,15 @@
-apiKey: "AIzaSyBt_5efqShhW4yY9j09Bbic4JavVzdRQAs",
+apiKey: "AIzaSyC_zSVCinAprAL5HXITnUOMwTH9RYEAFg0",
 
-authDomain: "test-fdfc5.firebaseapp.com",
+authDomain: "app3-d7fb2.firebaseapp.com",
 
-databaseURL: "https://test-fdfc5-default-rtdb.firebaseio.com",
+databaseURL: "https://app3-d7fb2-default-rtdb.firebaseio.com",
 
-projectId: "test-fdfc5",
+projectId: "app3-d7fb2",
 
-storageBucket: "test-fdfc5.appspot.com",
+storageBucket: "app3-d7fb2.appspot.com",
 
-messagingSenderId: "376298040004",
+messagingSenderId: "849082443535",
 
-appId: "1:376298040004:web:c20ce433e80aa069b87791",
+appId: "1:849082443535:web:b6b97dc87c461051b5807a",
 
-measurementId: "G-3M55VP8V3L"
-
-Next 
-
-apiKey: "AIzaSyAPuIBYe-fI3irawcEmRsCbDhipIAKl8ug",
-
-authDomain: "addapp-29984.firebaseapp.com",
-
-databaseURL: "https://addapp-29984-default-rtdb.firebaseio.com",
-
-projectId: "addapp-29984",
-
-storageBucket: "addapp-29984.appspot.com",
-
-messagingSenderId: "286749356592",
-
-appId: "1:286749356592:web:58efe71475bf17e86733f5",
-
-measurementId: "G-GY02GDYWDW"
-
+measurementId: "G-BFDTDF9DY3"

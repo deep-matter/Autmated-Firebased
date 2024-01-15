@@ -8,10 +8,8 @@ import os
 from utlis import separate_data
 from Screen import Screen_log
 import time
-
-firebase_config = FirebaseConfig(Creditials)
-app = firebase_config.initialize_app()
-auth = firebase_config.get_auth_instance()
+import asyncio
+from parser import *
 
 def Clear():
     os.system("clear")
@@ -31,7 +29,7 @@ def Inputs_Send():
     METHOD = input("Set the Method Sending:")
     return DATA, METHOD
 
-def main():
+async def main():
     try:
         Clear()
         print("1: Insert the Data into Firebase Users")
@@ -45,7 +43,7 @@ def main():
             DATA = Inputs_Create()
             create_users_in_firebase(DATA, auth=auth)
             print("Wait Please, the tool will automatically reload.")
-            time.sleep(8)
+            await asyncio.sleep(8)
             return main()
 
         elif Choices == "2":
@@ -53,9 +51,9 @@ def main():
             DATA, METHOD = Inputs_Send()
              #Create an instance of the Settings class
             settings_Sender = Settings(data_csv_path=DATA, authentication=auth)
-            settings_Sender.sending(method=METHOD)
+            await settings_Sender.sending(method=METHOD)
             print("Wait Please, the tool will automatically reload.")
-            time.sleep(8)
+            await asyncio.sleep(8)
 
         elif Choices == "3":
             Clear()
@@ -63,7 +61,7 @@ def main():
             separate_data(DATA)
             print("done splitation.")
             print("Wait Please, the tool will automatically reload.")
-            time.sleep(8)
+            await asyncio.sleep(8)
             return main()
 
         elif Choices == "99":
@@ -72,15 +70,15 @@ def main():
             print("Creating Data users be sure to have the right path of Data")
             print("to send with Reset Password be Sure to Set the method to reset")
             print("Exiting from the tool. Press CTRL + C to exit.")
-            time.sleep(3)
+            await asyncio.sleep(8)
             return
         else:
             print("You inserted an invalid option. The tool will reload automatically. Please wait...")
-            time.sleep(8)
+            await asyncio.sleep(8)
             return main()
     except KeyboardInterrupt:
         print("\nExiting from the tool. Press CTRL + C to exit.")
-        time.sleep(3)
+        await asyncio.sleep(8)
         return
 
 if __name__ == "__main__":
