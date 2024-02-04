@@ -1,4 +1,4 @@
-# Firebase Automation
+#  Attae Firebase Automation
 
 Automated Tool for Firebase Sending Emails. This documentation outlines the usage and functionality of each function.
 
