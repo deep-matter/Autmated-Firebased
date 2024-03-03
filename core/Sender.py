@@ -11,7 +11,7 @@ class Sender:
         self.authentication = authentication
         self.queues = []  # Initializing three queues
         self.partition_name = os.path.splitext(os.path.basename(self.data_csv_path))[0]
-        self.data = "./Data/"
+        self.data = "Data/"
         self.config = config
         self.path = self.data + self.partition_name
 

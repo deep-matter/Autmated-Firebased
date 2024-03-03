@@ -49,6 +49,6 @@ if __name__ == "__main__":
     # file_path = "./apps/app_1.json"
     # data = load_json_into_dictionary(file_path)
     # print(data)
-    total_project = os.listdir("./apps")
+    total_project = os.listdir("../apps")
     print(len(total_project))
-    parse("configs.txt")
+    parse("../configs.txt")

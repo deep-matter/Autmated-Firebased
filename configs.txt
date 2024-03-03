@@ -22,3 +22,31 @@ storageBucket: "tttt1-e2a0d.appspot.com",
 messagingSenderId: "979874824356",
 appId: "1:979874824356:web:3664ed197e6057e5322631",
 measurementId: "G-XCRJ56ZS88"
+
+Next
+
+authDomain: "tttt1-e2a0d.firebaseapp.com",
+databaseURL: "https://tttt1-e2a0d-default-rtdb.firebaseio.com/",
+projectId: "tttt1-e2a0d",
+storageBucket: "tttt1-e2a0d.appspot.com",
+messagingSenderId: "979874824356",
+appId: "1:979874824356:web:3664ed197e6057e5322631",
+measurementId: "G-XCRJ56ZS88"
+
+Next
+
+authDomain: "tttt1-e2a0d.firebaseapp.com",
+databaseURL: "https://tttt1-e2a0d-default-rtdb.firebaseio.com/",
+projectId: "tttt1-e2a0d",
+storageBucket: "tttt1-e2a0d.appspot.com",
+messagingSenderId: "979874824356",
+appId: "1:979874824356:web:3664ed197e6057e5322631",
+measurementId: "G-XCRJ56ZS88"
+
+authDomain: "tttt1-e2a0d.firebaseapp.com",
+databaseURL: "https://tttt1-e2a0d-default-rtdb.firebaseio.com/",
+projectId: "tttt1-e2a0d",
+storageBucket: "tttt1-e2a0d.appspot.com",
+messagingSenderId: "979874824356",
+appId: "1:979874824356:web:3664ed197e6057e5322631",
+measurementId: "G-XCRJ56ZS88"

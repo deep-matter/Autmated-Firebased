@@ -23,7 +23,7 @@ def split_data(data_csv, n_splits):
     """
     partition_name = os.path.splitext(os.path.basename(data_csv))[0]
     data_df = pd.read_csv(data_csv)
-    data = "./Data/"
+    data = "Data/"
     # Calculate the size of each chunk
     print(len(data_df))
     chunk_size = len(data_df) // n_splits
@@ -119,7 +119,7 @@ async def create_users_in_firebase(data_csv, auth, config):
     split_data(data_csv, 3)
 
     partition_name = os.path.splitext(os.path.basename(data_csv))[0]
-    data = "./Data/"
+    data = "Data/"
     path = data + partition_name
     print(path)
     for partition in range(1, 4):

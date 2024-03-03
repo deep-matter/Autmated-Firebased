@@ -1,3 +1,10 @@
+import os 
+import sys
+current_dir = os.path.dirname(__file__)
+target_dir = os.path.abspath(os.path.join(current_dir, "../"))
+sys.path.insert(0, target_dir)
+
+
 import asyncio
 import multiprocessing
 import os
@@ -49,8 +56,8 @@ def run_parallel(worker, apps_path, data_path):
             result.get()
 
 if __name__ == '__main__':
-    apps_path = "./apps"  # Replace with your actual path
-    data_path = "./Data"  # Replace with your actual path
+    apps_path = "../apps"  # Replace with your actual path
+    data_path = "../Data"  # Replace with your actual path
 
     run_parallel(worker_sender, apps_path, data_path)
 

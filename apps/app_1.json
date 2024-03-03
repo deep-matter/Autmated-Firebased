@@ -1,7 +1,7 @@
 {
   "apiKey": "AIzaSyBYEldu53vFg-amttHtrGG9xD7D-M1pDGI",
   "authDomain": "dollar-df103.firebaseapp.com",
-  "databaseURL": "Null",
+  "databaseURL": "https://dollar-df103-default-rtdb.firebaseio.com",
   "projectId": "dollar-df103",
   "storageBucket": "dollar-df103.appspot.com",
   "messagingSenderId": "421375973632",

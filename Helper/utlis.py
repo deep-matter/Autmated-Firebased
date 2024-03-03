@@ -1,11 +1,17 @@
+import os 
+import sys
+current_dir = os.path.dirname(__file__)
+target_dir = os.path.abspath(os.path.join(current_dir, "../"))
+sys.path.insert(0, target_dir)
+
 from re import M
 import pandas as pd
 from typing import Dict
 import random
 import string
 import csv
-from parser import load_json_into_dictionary
-from Config import FirebaseConfig
+from .parser import load_json_into_dictionary
+from .Config import FirebaseConfig
 import shutil
 
 def re_initialized_auth(config):
@@ -46,14 +52,14 @@ def separate_data(file_path):
             data_split["password"].append(password)
             
             partition_data = pd.DataFrame(data_split)
-            partition_data.to_csv(f"Data/test_data_{partition_index}.csv", index=False)
+            partition_data.to_csv(f"../Data/test_data_{partition_index}.csv", index=False)
             data_split = {"Email": [], "password": []}
 
     # Save the remaining data if any
     if data_split["Email"]:
         partition_index += 1
         partition_data = pd.DataFrame(data_split)
-        partition_data.to_csv(f"Data/test_data_{partition_index}.csv", index=False)
+        partition_data.to_csv(f"../Data/test_data_{partition_index}.csv", index=False)
         shutil.rmtree(file_path)  # Remove the entire directory
 
 
