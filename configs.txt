@@ -1,52 +1,9 @@
-apiKey: "AIzaSyBYEldu53vFg-amttHtrGG9xD7D-M1pDGI",
+apiKey: "AIzaSyAIhlZkCHHcETxOozSrKue1P00TH_T4r0M",
+authDomain: "aaaaaaaaaaa1-20473.firebaseapp.com",
+databaseURL: "https://aaaaaaaaaaa1-20473-default-rtdb.firebaseio.com/",
+projectId: "aaaaaaaaaaa1-20473",
+storageBucket: "aaaaaaaaaaa1-20473.appspot.com",
+messagingSenderId: "557435412550",
+appId: "1:557435412550:web:db0b696dbf59cca4122a47",
+measurementId: "G-WL847KF7QM"
 
-authDomain: "dollar-df103.firebaseapp.com",
-
-databaseURL: "https://dollar-df103-default-rtdb.firebaseio.com",
-
-projectId: "dollar-df103",
-
-storageBucket: "dollar-df103.appspot.com",
-
-messagingSenderId: "421375973632",
-
-appId: "1:421375973632:web:12bd86d90dccfe3881fbe5"
-
-Next 
-
-apiKey: "AIzaSyAECZML_QNU7lEGHc3GlEwp-ON7D2Y7VIY",
-authDomain: "tttt1-e2a0d.firebaseapp.com",
-databaseURL: "https://tttt1-e2a0d-default-rtdb.firebaseio.com/",
-projectId: "tttt1-e2a0d",
-storageBucket: "tttt1-e2a0d.appspot.com",
-messagingSenderId: "979874824356",
-appId: "1:979874824356:web:3664ed197e6057e5322631",
-measurementId: "G-XCRJ56ZS88"
-
-Next
-
-authDomain: "tttt1-e2a0d.firebaseapp.com",
-databaseURL: "https://tttt1-e2a0d-default-rtdb.firebaseio.com/",
-projectId: "tttt1-e2a0d",
-storageBucket: "tttt1-e2a0d.appspot.com",
-messagingSenderId: "979874824356",
-appId: "1:979874824356:web:3664ed197e6057e5322631",
-measurementId: "G-XCRJ56ZS88"
-
-Next
-
-authDomain: "tttt1-e2a0d.firebaseapp.com",
-databaseURL: "https://tttt1-e2a0d-default-rtdb.firebaseio.com/",
-projectId: "tttt1-e2a0d",
-storageBucket: "tttt1-e2a0d.appspot.com",
-messagingSenderId: "979874824356",
-appId: "1:979874824356:web:3664ed197e6057e5322631",
-measurementId: "G-XCRJ56ZS88"
-
-authDomain: "tttt1-e2a0d.firebaseapp.com",
-databaseURL: "https://tttt1-e2a0d-default-rtdb.firebaseio.com/",
-projectId: "tttt1-e2a0d",
-storageBucket: "tttt1-e2a0d.appspot.com",
-messagingSenderId: "979874824356",
-appId: "1:979874824356:web:3664ed197e6057e5322631",
-measurementId: "G-XCRJ56ZS88"
