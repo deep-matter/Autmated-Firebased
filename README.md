@@ -9,6 +9,13 @@ Automated Tool for Firebase Sending Emails. This documentation outlines the usag
 - [Usage](#usage)
 - [Cost Sending](#cost-sending)
 
+
+#### Features added 
+
+1. parallel run multi projects
+2. handling the unsend the Emails into the Caching 
+3. Split the data into Batches 
+
 ## Installation
 
 To install the tool and create a virtual environment to run the main script, follow these steps:
