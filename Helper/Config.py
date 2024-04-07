@@ -1,5 +1,4 @@
 import firebase
-from Creditials import Creditials
 
 class FirebaseConfig:
     def __init__(self, config):
@@ -26,12 +25,4 @@ class FirebaseConfig:
             self.auth = self.app.auth()
             print("Firebase Authentication instance obtained.")
         return self.auth
-
-if __name__ == "__main__":
-
-    firebase_config = FirebaseConfig(Credentials)
-
-    firebase_config.initialize_app()
-
-    auth_instance = firebase_config.get_auth_instance()
 
