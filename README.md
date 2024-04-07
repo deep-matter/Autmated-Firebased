@@ -60,20 +60,22 @@ To store data in the Firebase Realtime Database, follow these steps:
 "databaseURL": "https://add-user-e98e9-default-rtdb.firebaseio.com/users",
 ```
 
-Note: To get the Credential Config of the Project, follow the steps in the project settings and copy the JSON to `Creditials.py`.
 
-```python
+### Config file 
+the new the update in the application we need on to set the config into Config.txt 
 
-Creditials = {
-    "apiKey": "AIzaSyDtQPBX8qQZ22xyNCaAANg02XDM_bfN0uk",
-    "authDomain": "add-user-e98e9.firebaseapp.com",
-    "projectId": "add-user-e98e9",
-    "databaseURL": "https://add-user-e98e9-default-rtdb.firebaseio.com/users",
-    "storageBucket": "add-user-e98e9.appspot.com",
-    "messagingSenderId": "858288259676",
-    "appId": "1:858288259676:web:52354ec6f2a90f13581c99",
-    "measurementId": "G-D0WPTFDN0K"
-}
+and select the option to parser the Files into apps.json 
+
+
+```YAML
+"apiKey": "AIzaSyDtQPBX8qQZ22xyNCaAANg02XDM_bfN0uk",
+"authDomain": "add-user-e98e9.firebaseapp.com",
+"projectId": "add-user-e98e9",
+"databaseURL": "https://add-user-e98e9-default-rtdb.firebaseio.com/users",
+"storageBucket": "add-user-e98e9.appspot.com",
+"messagingSenderId": "858288259676",
+"appId": "1:858288259676:web:52354ec6f2a90f13581c99",
+"measurementId": "G-D0WPTFDN0K"
 ```
 
 
@@ -85,52 +87,3 @@ to run the tool follow the Command :
 python main.py
 ```
 
-##### How to use 
-
-when the Tool Lunch there two options so far Version 1.1 
-
-* Options :
-
-    1. Insert the Data into Firebase Users 
-
-        **Note** : here you have to Provide the Path of you data .CSV format stored in **Folder DATA**
-
-    2. Send Email with Reset Password Method to set reset
-
-        **Note** : here you have to give the method send for now only we have **reset** as Method to set in option 2
-      
-    3. Exiting from tool Press CTRL + C
-    
-       **Note** : to exit from the Tool use CTRL + C
-
-#### Cost-Sending
-
-##### Accounts per project
-
-| Account type              | Limit           |
-|---------------------------|-----------------|
-| Anonymous user accounts   | 100 million     |
-| Registered user accounts  | Unlimited       |
-
-##### Reset Password Method
-
-Here, the table shows how much to send per account for three projects:
-
-| Project                  | Reset Password Limit  |
-|--------------------------|-----------------------|
-| Project 1                | 150        |
-| Project 2                | 150        |
-| Project 3                | 150        |
-
-**Send Total = 450 Emails**
-
-###### Email Sending Limits
-
-The quotas listed in this section scale with the size of their respective projects.
-
-| Operation                   | Spark Plan Limit   | 
-|-----------------------------|--------------------|
-| Address verification emails | 1000 emails/day    | 
-| Address change emails       | 1000 emails/day    | 
-| Password reset emails       | 150 emails/day     | 
-| Email link sign-in emails   | 5 emails/day      | 
